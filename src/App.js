@@ -1,5 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import j2c from "j2c";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import HomePageView from "./pages/homePageView";
 
 const css = j2c.sheet({
   ".main": {
@@ -9,13 +12,14 @@ const css = j2c.sheet({
     display: "grid"
   }
 });
-console.log(css);
+
 const App = () => {
   return (
-    <Fragment>
+    <Provider store={store}>
       <style>{css}</style>
       <div className={css.main}></div>;
-    </Fragment>
+      <HomePageView />
+    </Provider>
   );
 };
 

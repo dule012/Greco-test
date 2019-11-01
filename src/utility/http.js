@@ -1,16 +1,24 @@
 import axios from "axios";
-import { setLoading, endLoading } from "../store/modules/loading";
+import {
+  setLoadingAction,
+  endLoadingAction
+} from "../store/modules/loadingReducer";
+import store from "../store/store";
 
-const http = axios.create({
-  baseURL: process.env.URL
-});
+const http = axios.create({});
 
 http.interceptors.request.use(
-  () => setLoading(),
+  config => {
+    store.dispatch(setLoadingAction());
+    return config;
+  },
   error => Promise.reject(error)
 );
 http.interceptors.response.use(
-  () => endLoading(),
+  response => {
+    store.dispatch(endLoadingAction());
+    return response;
+  },
   error => Promise.reject(error)
 );
 
