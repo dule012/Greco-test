@@ -3,15 +3,7 @@ class StorageService {
     localStorage.setItem(propName, value);
   }
   static get(name) {
-    localStorage.getItem(name);
-  }
-
-  static remove(name) {
-    localStorage.removeItem(name);
-  }
-
-  static has(name) {
-    return localStorage.hasOwnProperty(name);
+    return localStorage.getItem(name);
   }
 }
 
