@@ -136,7 +136,7 @@ class HomeView extends Component {
     const { image } = this.state;
 
     return Array.isArray(characters) && characters.length > 0 ? (
-      characters.map(item => (
+      characters.map((item, index) => (
         <CharacterItem
           image={`${item.thumbnail.path}/${image}.${item.thumbnail.extension}`}
           title={item.name}
@@ -147,7 +147,7 @@ class HomeView extends Component {
           isBookmarked={Boolean(this.state[item.id])}
           handleBookmark={this.handleBookmark}
           id={item.id}
-          key={item.id}
+          key={`${item.id}${index}`}
         />
       ))
     ) : (
@@ -188,7 +188,9 @@ class HomeView extends Component {
     const { getCharactersAction, resetCharacters } = this.props;
     this.setState({ search: e.target.value, offset: 0 }, () => {
       if (this.state.search)
-        getCharactersAction(this.state.search, this.state.offset);
+        getCharactersAction(this.state.search, this.state.offset).then(() => {
+          if (!this.state.search || this.props.total === 0) resetCharacters();
+        });
     });
     resetCharacters();
   };
