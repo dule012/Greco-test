@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import j2c from "j2c";
+import PropTypes from "prop-types";
 import { loadingSelector } from "../../store/selectors/loadingSelector";
 import "../../App.css";
 
@@ -38,6 +39,10 @@ const Loader = props => {
   );
 
   return loading ? loaderContainer : null;
+};
+
+Loader.propTypes = {
+  loading: PropTypes.bool.isRequired
 };
 
 export default connect(

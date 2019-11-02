@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import j2c from "j2c";
+import PropTypes from "prop-types";
 import marvelLogo from "../../assets/images/marvel.png";
 
 const css = j2c.sheet({
@@ -8,8 +9,10 @@ const css = j2c.sheet({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "0 12px",
-    backgroundColor: "#202020"
+    backgroundColor: "#202020",
+    "@media screen and (min-width: 600px)": {
+      justifyContent: "space-around"
+    }
   },
   ".titleContainer": {
     padding: "20px 0",
@@ -56,6 +59,11 @@ const Header = props => {
       </header>
     </Fragment>
   );
+};
+
+Header.propTypes = {
+  search: PropTypes.string.isRequired,
+  setInputValue: PropTypes.func.isRequired
 };
 
 export default Header;

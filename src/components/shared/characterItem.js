@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment } from "react";
+import PropTypes from "prop-types";
 import BookmarkItem from "./bookmarkItem";
 import bookmarkStar from "../../assets/images/bookmark_star.png";
 
@@ -46,5 +47,21 @@ class CharacterItem extends PureComponent {
     );
   }
 }
+
+CharacterItem.defaultProps = {
+  isBookmarked: PropTypes.undefined
+};
+
+CharacterItem.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  wrapperCss: PropTypes.string.isRequired,
+  titleCss: PropTypes.string.isRequired,
+  imageCss: PropTypes.string.isRequired,
+  isBookmarked: PropTypes.bool,
+  starCss: PropTypes.string.isRequired,
+  handleBookmark: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
+};
 
 export default CharacterItem;

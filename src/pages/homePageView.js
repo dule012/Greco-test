@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { charactersSelector } from "../store/selectors/charactersSelector";
 import {
   getCharacters,
@@ -17,6 +18,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const HomePageView = props => <HomeView {...props} />;
+
+HomePageView.propTypes = {
+  characters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getCharactersAction: PropTypes.func.isRequired,
+  resetCharacters: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired
+};
 
 export default connect(
   mapStateToProps,
